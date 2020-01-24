@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             player.GetComponentInParent<Player>().killCount++;
             Destroy(gameObject);
+            GameObject.Find("KillCount").GetComponent<Text>().text = "Kills: " + player.GetComponentInParent<Player>().killCount;
             Camera.main.GetComponent<Shoot>().StopShooting();
         }
     }

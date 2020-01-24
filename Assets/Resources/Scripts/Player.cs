@@ -14,12 +14,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        GameObject.Find("KillCount").GetComponent<Text>().text = "Kills: " + killCount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject.Find("KillCount").GetComponent<Text>().text = "Kills: " + killCount;
     }
 
     private void OnCollisionEnter(Collision collision)

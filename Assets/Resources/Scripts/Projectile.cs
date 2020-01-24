@@ -15,10 +15,17 @@ public class Projectile : MonoBehaviour
     public List<GameObject> trails;
     private bool collided;
 
+    private void Awake()
+    {
+
+        if (shotSFX != null && GetComponent<AudioSource>())
+        {
+            GetComponent<AudioSource>().PlayOneShot(shotSFX);
+        }
+    }
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * speed * 20);
-
         if (muzzlePrefab != null)
         {
             var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
@@ -31,10 +38,6 @@ public class Projectile : MonoBehaviour
                 var psChild = muzzleVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
                 Destroy(muzzleVFX, psChild.main.duration);
             }
-        }
-        if (shotSFX != null && GetComponent<AudioSource>())
-        {
-            GetComponent<AudioSource>().PlayOneShot(shotSFX);
         }
     }
 
@@ -61,7 +64,7 @@ public class Projectile : MonoBehaviour
             collided = true;
 
 
-            if (shotSFX != null && GetComponent<AudioSource>())
+            if (hitSFX != null && GetComponent<AudioSource>())
             {
                 GetComponent<AudioSource>().PlayOneShot(hitSFX);
             }
